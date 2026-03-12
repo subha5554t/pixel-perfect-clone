@@ -14,7 +14,117 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_logs: {
+        Row: {
+          created_at: string
+          id: string
+          latency_ms: number | null
+          model: string | null
+          module: string
+          prompt: string
+          response: string | null
+          tokens_used: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          latency_ms?: number | null
+          model?: string | null
+          module: string
+          prompt: string
+          response?: string | null
+          tokens_used?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          latency_ms?: number | null
+          model?: string | null
+          module?: string
+          prompt?: string
+          response?: string | null
+          tokens_used?: number | null
+        }
+        Relationships: []
+      }
+      b2b_proposals: {
+        Row: {
+          budget_allocation: Json | null
+          budget_limit: number | null
+          client_industry: string | null
+          client_name: string
+          cost_breakdown: Json | null
+          created_at: string
+          id: string
+          impact_summary: string | null
+          product_mix: Json | null
+          raw_json: Json | null
+          requirements: string | null
+        }
+        Insert: {
+          budget_allocation?: Json | null
+          budget_limit?: number | null
+          client_industry?: string | null
+          client_name: string
+          cost_breakdown?: Json | null
+          created_at?: string
+          id?: string
+          impact_summary?: string | null
+          product_mix?: Json | null
+          raw_json?: Json | null
+          requirements?: string | null
+        }
+        Update: {
+          budget_allocation?: Json | null
+          budget_limit?: number | null
+          client_industry?: string | null
+          client_name?: string
+          cost_breakdown?: Json | null
+          created_at?: string
+          id?: string
+          impact_summary?: string | null
+          product_mix?: Json | null
+          raw_json?: Json | null
+          requirements?: string | null
+        }
+        Relationships: []
+      }
+      product_categorizations: {
+        Row: {
+          created_at: string
+          id: string
+          primary_category: string | null
+          product_description: string
+          product_name: string
+          raw_json: Json | null
+          seo_tags: string[] | null
+          sub_category: string | null
+          sustainability_filters: string[] | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          primary_category?: string | null
+          product_description: string
+          product_name: string
+          raw_json?: Json | null
+          seo_tags?: string[] | null
+          sub_category?: string | null
+          sustainability_filters?: string[] | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          primary_category?: string | null
+          product_description?: string
+          product_name?: string
+          raw_json?: Json | null
+          seo_tags?: string[] | null
+          sub_category?: string | null
+          sustainability_filters?: string[] | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
