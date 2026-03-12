@@ -89,7 +89,7 @@ export default function ImpactReportingPage() {
                 <div className="px-4 py-2 rounded-lg bg-secondary font-medium">Database</div>
               </div>
 
-              <div className="json-output">
+              <pre className="json-output">
 {`// Proposed Edge Function: generate-impact-report
 // Input: order_id, products[]
 // Output: Structured impact JSON
