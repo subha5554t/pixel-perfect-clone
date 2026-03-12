@@ -5,6 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import AutoCategorizePage from "./pages/AutoCategorizePage.tsx";
+import ProposalGeneratorPage from "./pages/ProposalGeneratorPage.tsx";
+import ImpactReportingPage from "./pages/ImpactReportingPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +19,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/auto-categorize" element={<AutoCategorizePage />} />
+          <Route path="/proposal-generator" element={<ProposalGeneratorPage />} />
+          <Route path="/impact-reporting" element={<ImpactReportingPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
