@@ -1,0 +1,7 @@
+project_id = "pagzretkjypjumgppdqh"
+
+[functions.auto-categorize]
+verify_jwt = false
+
+[functions.generate-proposal]
+verify_jwt = false
