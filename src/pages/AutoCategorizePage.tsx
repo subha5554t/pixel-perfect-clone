@@ -40,7 +40,6 @@ export default function AutoCategorizePage() {
       if (error) throw error;
       setResult(data);
 
-      // Save to database
       await supabase.from("product_categorizations").insert({
         product_name: productName,
         product_description: productDescription,
@@ -64,10 +63,17 @@ export default function AutoCategorizePage() {
     <AppLayout>
       <div className="container py-8 max-w-5xl">
         <div className="mb-8 animate-fade-in">
-          <h1 className="text-4xl font-display mb-2">Auto-Category & Tag Generator</h1>
-          <p className="text-muted-foreground text-lg">
-            AI-powered product categorization with SEO tags and sustainability filters
-          </p>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <Tag className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-display">Auto-Category & Tag Generator</h1>
+              <p className="text-muted-foreground text-lg">
+                AI-powered product categorization with SEO tags and sustainability filters
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -118,7 +124,8 @@ export default function AutoCategorizePage() {
           <div className="space-y-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
             {result ? (
               <>
-                <Card className="card-elevated">
+                <Card className="card-elevated overflow-hidden">
+                  <div className="h-1 w-full bg-gradient-to-r from-primary to-success" />
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg font-display">Category</CardTitle>
                   </CardHeader>
@@ -165,7 +172,7 @@ export default function AutoCategorizePage() {
                     <CardTitle className="text-lg font-display">AI Reasoning</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">{result.reasoning}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{result.reasoning}</p>
                   </CardContent>
                 </Card>
 

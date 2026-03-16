@@ -90,10 +90,17 @@ export default function ProposalGeneratorPage() {
     <AppLayout>
       <div className="container py-8 max-w-6xl">
         <div className="mb-8 animate-fade-in">
-          <h1 className="text-4xl font-display mb-2">B2B Proposal Generator</h1>
-          <p className="text-muted-foreground text-lg">
-            AI-powered sustainable product proposals with budget allocation and impact positioning
-          </p>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+              <FileText className="w-5 h-5 text-accent" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-display">B2B Proposal Generator</h1>
+              <p className="text-muted-foreground text-lg">
+                AI-powered sustainable product proposals with budget allocation and impact positioning
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8">
@@ -137,7 +144,8 @@ export default function ProposalGeneratorPage() {
           <div className="lg:col-span-3 space-y-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
             {result ? (
               <>
-                <Card className="card-elevated">
+                <Card className="card-elevated overflow-hidden">
+                  <div className="h-1 w-full bg-gradient-to-r from-accent to-warning" />
                   <CardHeader className="pb-3">
                     <CardTitle className="font-display">Suggested Product Mix</CardTitle>
                   </CardHeader>
@@ -191,7 +199,7 @@ export default function ProposalGeneratorPage() {
                           </div>
                           <div className="h-2 bg-muted rounded-full overflow-hidden">
                             <div
-                              className="h-full gradient-primary rounded-full transition-all"
+                              className="h-full gradient-primary rounded-full transition-all duration-500"
                               style={{ width: `${b.percentage}%` }}
                             />
                           </div>
@@ -235,7 +243,8 @@ export default function ProposalGeneratorPage() {
                   </Card>
                 </div>
 
-                <Card className="card-elevated border-primary/20">
+                <Card className="card-elevated border-primary/20 overflow-hidden">
+                  <div className="h-1 w-full bg-gradient-to-r from-primary to-info" />
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg font-display">Impact Positioning</CardTitle>
                   </CardHeader>

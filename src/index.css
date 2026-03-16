@@ -12,19 +12,19 @@
     --background: 40 30% 97%;
     --foreground: 150 20% 10%;
 
-    --card: 40 25% 95%;
+    --card: 0 0% 100%;
     --card-foreground: 150 20% 10%;
 
-    --popover: 40 30% 97%;
+    --popover: 0 0% 100%;
     --popover-foreground: 150 20% 10%;
 
     --primary: 152 45% 28%;
     --primary-foreground: 40 30% 97%;
 
-    --secondary: 36 40% 90%;
+    --secondary: 36 40% 92%;
     --secondary-foreground: 150 20% 15%;
 
-    --muted: 40 20% 92%;
+    --muted: 40 20% 94%;
     --muted-foreground: 150 10% 45%;
 
     --accent: 36 60% 60%;
@@ -33,7 +33,7 @@
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 40 15% 88%;
+    --border: 40 15% 90%;
     --input: 40 15% 88%;
     --ring: 152 45% 28%;
 
@@ -60,17 +60,17 @@
     --gradient-warm: linear-gradient(135deg, hsl(36 60% 60%), hsl(36 80% 55%));
     --gradient-hero: linear-gradient(160deg, hsl(150 15% 12%), hsl(152 45% 20%));
     
-    --shadow-soft: 0 2px 15px -3px hsl(150 20% 10% / 0.08);
-    --shadow-card: 0 4px 20px -5px hsl(150 20% 10% / 0.1);
-    --shadow-elevated: 0 10px 40px -10px hsl(150 20% 10% / 0.15);
+    --shadow-soft: 0 2px 15px -3px hsl(150 20% 10% / 0.06);
+    --shadow-card: 0 1px 3px hsl(150 20% 10% / 0.04), 0 4px 20px -5px hsl(150 20% 10% / 0.08);
+    --shadow-elevated: 0 10px 40px -10px hsl(150 20% 10% / 0.12);
   }
 
   .dark {
     --background: 150 15% 8%;
     --foreground: 40 20% 92%;
-    --card: 150 15% 12%;
+    --card: 150 12% 14%;
     --card-foreground: 40 20% 92%;
-    --popover: 150 15% 12%;
+    --popover: 150 12% 14%;
     --popover-foreground: 40 20% 92%;
     --primary: 152 45% 45%;
     --primary-foreground: 150 15% 8%;
@@ -102,7 +102,17 @@
 
 @layer components {
   .card-elevated {
-    @apply bg-card rounded-xl border;
+    @apply bg-card rounded-xl border transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .card-glass {
+    @apply rounded-xl border backdrop-blur-md;
+    background: hsl(var(--card) / 0.7);
     box-shadow: var(--shadow-card);
   }
 
@@ -114,15 +124,64 @@
     background: var(--gradient-hero);
   }
 
+  .gradient-mesh {
+    background: 
+      radial-gradient(at 20% 30%, hsl(152 45% 28% / 0.15) 0px, transparent 60%),
+      radial-gradient(at 80% 70%, hsl(36 60% 60% / 0.1) 0px, transparent 60%),
+      radial-gradient(at 50% 50%, hsl(200 60% 50% / 0.05) 0px, transparent 60%);
+  }
+
   .tag-pill {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary transition-colors hover:bg-primary/15;
   }
 
   .tag-sustainability {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-success/10 text-success;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-success/10 text-success transition-colors hover:bg-success/15;
   }
 
   .json-output {
-    @apply bg-sidebar text-sidebar-foreground rounded-lg p-4 font-mono text-sm overflow-auto;
+    @apply bg-sidebar text-sidebar-foreground rounded-lg p-4 font-mono text-sm overflow-auto max-h-96;
   }
+
+  .stat-card {
+    @apply relative overflow-hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-5;
+    background: var(--gradient-primary);
+  }
+
+  .pulse-dot {
+    @apply w-2 h-2 rounded-full bg-success;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 hsl(var(--success) / 0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 6px hsl(var(--success) / 0); }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
