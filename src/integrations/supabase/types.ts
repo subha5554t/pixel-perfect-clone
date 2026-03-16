@@ -89,6 +89,48 @@ export type Database = {
         }
         Relationships: []
       }
+      impact_reports: {
+        Row: {
+          breakdown: Json | null
+          carbon_avoided_kg: number | null
+          created_at: string
+          id: string
+          impact_statement: string | null
+          local_artisans_supported: number | null
+          local_sourcing_percentage: number | null
+          order_description: string
+          plastic_saved_kg: number | null
+          products: Json | null
+          raw_json: Json | null
+        }
+        Insert: {
+          breakdown?: Json | null
+          carbon_avoided_kg?: number | null
+          created_at?: string
+          id?: string
+          impact_statement?: string | null
+          local_artisans_supported?: number | null
+          local_sourcing_percentage?: number | null
+          order_description: string
+          plastic_saved_kg?: number | null
+          products?: Json | null
+          raw_json?: Json | null
+        }
+        Update: {
+          breakdown?: Json | null
+          carbon_avoided_kg?: number | null
+          created_at?: string
+          id?: string
+          impact_statement?: string | null
+          local_artisans_supported?: number | null
+          local_sourcing_percentage?: number | null
+          order_description?: string
+          plastic_saved_kg?: number | null
+          products?: Json | null
+          raw_json?: Json | null
+        }
+        Relationships: []
+      }
       product_categorizations: {
         Row: {
           created_at: string
